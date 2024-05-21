@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import './product.css'
+import '../product.css'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { AiOutlineStock } from 'react-icons/ai';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+// import { AiOutlineStock } from 'react-icons/ai';
+// import Pagination from '@mui/material/Pagination';
+// import Stack from  '@mui/material/Stack';
 import { FaStar } from 'react-icons/fa6';
 
 const Product = () => {
 
-    // const { id } = useParams();
+    const { title } = useParams();
 
     const [sidebar, setsidebar] = useState([])
     const [data, setdata] = useState(null)
     const [cat, setcat] = useState(null);
 
     useEffect(() => {
-        axios.get('https://dummyjson.com/products/categories')
+        axios.get(`https://dummyjson.com/products/categories/`)
             .then((response) => setsidebar(response.data))
     }, []);
 
@@ -46,12 +46,12 @@ const Product = () => {
                         <div className="main d-flex">
                             <div className="">
                                 <div className="sidebar">
-                                    <NavLink to="/" className='nav-link sideLink' onClick={() => setcat()}>All Product</NavLink>
+                                    <NavLink to={`/${title}`} className='nav-link sideLink' onClick={() => setcat()}>All Product</NavLink>
                                     {
                                         sidebar.map((item, index) => {
                                             return (
                                                 <>
-                                                    <NavLink className='nav-link sideLink' key={index} onClick={() => category(item)}>{item}</NavLink>
+                                                    <Link to={`/${item}`} className='nav-link sideLink' key={index} onClick={() => { category(item) }}>{item}</Link>
                                                 </>
                                             )
                                         })
@@ -70,8 +70,8 @@ const Product = () => {
                                                 <Card.Img variant='top' src={item.thumbnail} loading='lazy' />
                                                 <CardBody>
                                                     <div className="d-flex justify-content-between align-items-center">
-                                                    <CardTitle className='text-dark'>{item.title} </CardTitle>
-                                                    <h6 class="rating bg-white text-success d-flex align-items-center"> {item.rating} <FaStar className='ms-2' /></h6>
+                                                        <CardTitle className='text-dark'>{item.title} </CardTitle>
+                                                        <h6 class="rating bg-white text-success d-flex align-items-center"> {item.rating} <FaStar className='ms-1' /></h6>
                                                     </div>
                                                     {/* <CardText>{item.description}</CardText> */}
                                                     <div className="d-flex justify-content-between align-items-center">

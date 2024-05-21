@@ -8,12 +8,19 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
+import { IoMdClose } from "react-icons/io";
+import { FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
 
 
 const Header = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [signIn, setSignIn] = useState(false);
+
+
+  // const searchHandler = (e) => {
+  //   setSearch(e.target.value);
+  // };
 
   return (
     <>
@@ -23,7 +30,13 @@ const Header = () => {
           <Navbar.Brand > <h1>Shopping App</h1> </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-between'>
-            <input type="search" placeholder='Search' className='search form-control border border-dark bg-dark text-white' />
+            <input
+              type="search"
+              placeholder='Search'
+              // value={search}
+              // onChange={searchHandler}
+              className='search form-control border border-dark bg-dark text-white' />
+
             <Nav className="main mr-auto align-items-center">
               <NavItem className='cart align-items-center'><a href="">  <BsCart2 /> Cart </a></NavItem>
               <NavItem className='ms-lg-4'><a className='btn btn-primary' onClick={() => setModalShow(true)}>Login in / SignIn</a></NavItem>
@@ -72,7 +85,10 @@ const Header = () => {
           </Modal.Body>
         ) : (
           <Modal.Body className='text-dark'>
-            <h4 className='text-center'>Login</h4>
+            <h4 className='text-center position-relative'>
+             Login
+            <IoMdClose className='close' onClick={() => setModalShow(false)} />
+            </h4>
             <label>Email / Phone</label>
             <TextField id="outlined-basic" className='w-100 my-1' label="Email or Phone" variant="outlined" size='small' />
             <label>Password</label>
@@ -85,15 +101,15 @@ const Header = () => {
               <h6 className='text-center mb-4'>Also Login With</h6>
               <div className='d-flex justify-content-evenly'>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-brands fa-google"></i>
+                <FaGoogle className='social rounded-circle'/>
                   <span>Google</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-brands fa-facebook"></i>
+                  <FaFacebook className='social rounded-circle'/>
                   <span>Facebook</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-solid fa-phone"></i>
+                  <FaPhone className='social rounded-circle'/>
                   <span>TrueCaller</span>
                 </div>
               </div>
