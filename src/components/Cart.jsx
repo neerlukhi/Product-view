@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdDelete, MdFavorite } from "react-icons/md";
 import { FaMinus, FaPlus, FaStar } from "react-icons/fa";
-import { Removeitem } from '../slice/cartSlice';
+import { Removeitem , inc , dec } from '../slice/cartSlice';
 import '../product.css'
 
 const Cart = () => {
@@ -81,7 +81,7 @@ const Cart = () => {
                                                         <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                                             {/* <!-- Quantity --> */}
                                                             <div className="d-flex mb-4 align-items-center" style={{ maxWidth: '250px', height: '40px' }}>
-                                                                <button className='btn btn-primary px-3 me-2'>
+                                                                <button className='btn btn-primary px-3 me-2' onClick={() => dispatch(dec(index))}>
                                                                     <FaMinus />
                                                                 </button>
 
@@ -89,11 +89,11 @@ const Cart = () => {
                                                                     <input id="form1" min="0" name="quantity" value="1" type="number" className="form-control" />
                                                                 </div> */}
                                                                 <div data-mdb-input-init className="form-outline">
-                                                                    <input id="form1" min="0" name="quantity" value="1" type="number" className="form-control" />
-                                                                    {/* <label className="form-label" for="form1">Quantity</label> */}
+                                                                    {/* <label className="form-label" for="form1">{item.qty}</label> */}
+                                                                    <span>{item.qty}</span>
                                                                 </div>
 
-                                                                <button className="btn btn-primary px-3 ms-2">
+                                                                <button className="btn btn-primary px-3 ms-2" onClick={() => dispatch(inc(index))}>
                                                                     <FaPlus />
                                                                 </button>
                                                             </div>

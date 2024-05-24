@@ -295,43 +295,16 @@ img {
     width: 20px;
 }
 
-
-.form-control {
-    display: block;
+.form-outline span {
+    /* display: block; */
     width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
+    padding: .375rem 30px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.6;
+    border: 1px solid #CCCC;
     color: var(--mdb-surface-color);
     background-color: var(--mdb-body-bg);
     box-shadow: var(--mdb-box-shadow-inset);
-    transition: all .2s linear;
-}
-
-.form-control:focus {
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    outline: 0;
-    box-shadow: none;
-}
-
-.form-outline .form-control.active ~ .form-label {
-    transform: translateY(-1rem) translateY(0.1rem) scale(0.8);
-}
-
-.form-outline .form-control~.form-label {
-    position: absolute;
-    top: 0;
-    left: 80%;
-    max-width: 90%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* left: .75rem; */
-    padding-top: .37rem;
-    pointer-events: none;
-    transform-origin: 0 0;
-    transition: all .2s ease-out;
-    color: var(--mdb-form-control-label-color);
-    margin-bottom: 0;
 }

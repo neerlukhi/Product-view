@@ -94,8 +94,7 @@ const Productdetail = () => {
                         </div>
                         <div className='col col-sm-6'>
                             <div className='d-flex justify-content-between'>
-                                <h6 className='text-capitalize
-                                '>{data?.category}</h6>
+                                <h6 className='text-capitalize'>{data?.category}</h6>
                                 <h6
                                     className='text-muted'
                                     title='Share'
