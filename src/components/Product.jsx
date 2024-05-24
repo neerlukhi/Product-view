@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
+import { Button, Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import '../product.css'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
+import { Addtocart } from '../slice/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const Product = () => {
 
@@ -13,6 +15,9 @@ const Product = () => {
     const [sidebar, setsidebar] = useState([])
     const [data, setdata] = useState(null)
     const [cat, setcat] = useState(null);
+
+    const dispatch = useDispatch()
+    
 
     useEffect(() => {
         axios.get(`https://dummyjson.com/products/category-list`)
@@ -75,7 +80,7 @@ const Product = () => {
                                                         <p className='mb-0' style={{ color: 'green', fontWeight: 'bold' }}>Price : ${item.price}</p>
                                                         <span className='text-black' style={{ fontWeight: 'normal' }}>{item.discountPercentage}%off</span>
                                                         {/* <span className='stock'><AiOutlineStock/> {item.stock}</span> */}
-                                                        <a href='/' className='btn btn-primary'>Add to cart</a>
+                                                        <Button className='btn btn-primary' onClick={() => dispatch(Addtocart(data))}>Add to cart</Button>
                                                     </div>
                                                 </CardBody>
                                             </Link>

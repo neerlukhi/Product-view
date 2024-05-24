@@ -1,16 +1,18 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdDelete, MdFavorite } from "react-icons/md";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaStar } from "react-icons/fa";
+import { Removeitem } from '../slice/cartSlice';
 import '../product.css'
 
 const Cart = () => {
 
     const data = useSelector((state) => state.cart.carts);
+    const checkout = useSelector((state) => state.cart.grandTotal)
     console.log('datas', data)
 
-
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -27,7 +29,7 @@ const Cart = () => {
                         <div className="col-md-8">
                             <div className="card mb-4">
                                 <div className="card-header py-3">
-                                    <h5 className="mb-0">Cart - 2 items</h5>
+                                    <h5 className="mb-0">Cart - {data.length} items</h5>
                                 </div>
                                 {
                                     data?.map((item, index) => {
@@ -45,9 +47,9 @@ const Cart = () => {
                                                                     className="w-100"
                                                                     alt="Blue Jeans Jacket"
                                                                 />
-                                                                <a href="#!">
-                                                                    <div className="mask" style={{ backgroundColor: '#fbfbfb33' }}></div>
-                                                                </a>
+                                                                {/* <a href="#">
+                                                                    <div className="mask" style={{ backgroundColor: '#fbfbfb33' }}>click</div>
+                                                                </a> */}
                                                             </div>
 
                                                             {/* <!-- Image --> */}
@@ -56,11 +58,16 @@ const Cart = () => {
                                                         <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                                             {/* <!-- Data --> */}
                                                             <p><strong>{item.title}</strong></p>
-                                                            <p>{item.category}</p>
-                                                            <p>Size: M</p>
-                                                            <div className="d-flex">
+                                                            <p className='text-capitalize fw-medium'>{item.category}</p>
+                                                            {/* <p>Size: M</p> */}
+                                                            <h6 className=' fw-semibold '>
+                                                                {item.discountPercentage}%off
+                                                            </h6>
+                                                            <div className="d-flex mt-4">
                                                                 <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-sm me-1 mb-2" data-mdb-tooltip-init
-                                                                    title="Remove item">
+                                                                    title="Remove item"
+                                                                    onClick={() => dispatch(Removeitem(index))}
+                                                                >
                                                                     <MdDelete style={{ width: '20px', height: '20px' }} />
                                                                 </button>
                                                                 <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-sm mb-2 " data-mdb-tooltip-init
@@ -142,7 +149,7 @@ const Cart = () => {
                                         <li
                                             className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                             Products
-                                            <span>$53.98</span>
+                                            <span>${checkout ? checkout.toFixed(2) : 0}</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                                             Shipping
@@ -156,7 +163,7 @@ const Cart = () => {
                                                     <p className="mb-0">(including VAT)</p>
                                                 </strong>
                                             </div>
-                                            <span><strong>$53.98</strong></span>
+                                            <span><strong>${checkout ? checkout.toFixed(2) : 0}</strong></span>
                                         </li>
                                     </ul>
 

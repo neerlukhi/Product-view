@@ -6,6 +6,7 @@ import Product from './components/Product';
 import Productdetail from './components/Productdetail';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './components/Cart';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       <Header />
+      <ToastContainer/>
       <Routes>
         <Route path="/"  element={<Product/>} />
         <Route path="/:title" element={<Product/>} />
