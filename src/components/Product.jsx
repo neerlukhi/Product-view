@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 import '../product.css'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-// import { AiOutlineStock } from 'react-icons/ai';
-// import Pagination from '@mui/material/Pagination';
-// import Stack from  '@mui/material/Stack';
 import { FaStar } from 'react-icons/fa6';
 
 const Product = () => {
@@ -18,12 +15,12 @@ const Product = () => {
     const [cat, setcat] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://dummyjson.com/products/categories/`)
+        axios.get(`https://dummyjson.com/products/category-list`)
             .then((response) => setsidebar(response.data))
     }, []);
 
     useEffect(() => {
-        axios.get('https://dummyjson.com/products?limit=100&skip=0')
+        axios.get('https://dummyjson.com/products?limit=194&skip=0')
             .then((res) => setdata(res.data.products))
     }, []);
     console.log(data);

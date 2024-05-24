@@ -38,7 +38,7 @@ const Header = () => {
               className='search form-control border border-dark bg-dark text-white' />
 
             <Nav className="main mr-auto align-items-center">
-              <NavItem className='cart align-items-center'><a href="">  <BsCart2 /> Cart </a></NavItem>
+              <NavLink to={`/cart`} className='d-flex align-items-center'> <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> Cart </a></NavItem> </NavLink>
               <NavItem className='ms-lg-4'><a className='btn btn-primary' onClick={() => setModalShow(true)}>Login in / SignIn</a></NavItem>
             </Nav>
           </Navbar.Collapse>

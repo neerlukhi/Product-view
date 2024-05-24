@@ -4,6 +4,8 @@ import { FaStar } from "react-icons/fa6";
 import { AiOutlineStock } from "react-icons/ai";
 import { useParams, NavLink } from "react-router-dom";
 import { FaShare } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { Addtocart } from "../slice/cartSlice";
 // import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -12,9 +14,10 @@ const Productdetail = () => {
     var { id } = useParams()
 
     const [data, setdata] = useState(null);
-    const [cat, setcat] = useState(null);
 
     const [image, setImage] = useState(null);
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         console.log(id)
@@ -84,7 +87,7 @@ const Productdetail = () => {
                                 <button className="btn btn-success">
                                     <i className="fa-solid fa-heart"></i> ADD TO WISHLIST
                                 </button>
-                                <button className="btn btn-primary">
+                                <button className="btn btn-primary" onClick={() => dispatch(Addtocart(data))}>
                                     <i className="fa-solid fa-cart-shopping"></i> ADD TO CART
                                 </button>
                             </div>
