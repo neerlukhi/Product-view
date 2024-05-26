@@ -6,7 +6,9 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
 import { Addtocart } from '../slice/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
+import { hideOffcanvas } from '../slice/cartSlice';
 
 const Product = () => {
 
@@ -17,7 +19,8 @@ const Product = () => {
     const [cat, setcat] = useState(null);
 
     const dispatch = useDispatch()
-    
+
+    const OffcanvasVisible = useSelector((state) => state.cart.isVisible);
 
     useEffect(() => {
         axios.get(`https://dummyjson.com/products/category-list`)
@@ -36,6 +39,7 @@ const Product = () => {
         })
 
         setcat(result)
+        dispatch(hideOffcanvas());// Close the offcanvas when a category is selected
     }
 
     console.log(cat)
@@ -44,7 +48,7 @@ const Product = () => {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-2 p-0">
+                    <div className="col-2 p-0 d-none d-lg-block">
                         <div className="main d-flex">
                             <div className="">
                                 <div className="sidebar">
@@ -61,6 +65,22 @@ const Product = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="col-12 d-lg-none">
+                        {/* <Button variant="" onClick={() => setShow(true)}>
+                        <FaBars/>
+                    </Button> */}
+                        <Offcanvas show={OffcanvasVisible} onHide={() => dispatch(hideOffcanvas())} responsive="lg">
+                            <OffcanvasHeader closeButton>
+                                <OffcanvasTitle>Categories</OffcanvasTitle>
+                            </OffcanvasHeader>
+                            <OffcanvasBody>
+                                <NavLink to={`/${title}`} className='nav-link sideLink' onClick={() => { setcat(); dispatch(hideOffcanvas()); }}>All Product</NavLink>
+                                {sidebar.map((item, index) => (
+                                    <Link to={`/${item}`} className='nav-link sideLink' key={index} onClick={() => category(item)}>{item}</Link>
+                                ))}
+                            </OffcanvasBody>
+                        </Offcanvas>
                     </div>
                     <div className="row col-10 p-0 m-0 card-main">
                         {
@@ -97,8 +117,8 @@ const Product = () => {
                                                 <CardBody>
                                                     <CardTitle className='text-dark' style={{ fontSize: '16px', textTransform: 'capitalize' }}>{item.title} </CardTitle>
                                                     {/* <CardText>{item.description}</CardText> */}
-                                                    <div className="d-flex justify-content-between ">
-                                                        <p style={{ color: 'green', fontWeight: 'bold' }}>Price : ${item.price}</p>
+                                                    <div className="d-flex justify-content-between align-items-center">
+                                                        <p className='p-price' style={{ color: 'green', fontWeight: 'bold' }}><span>Price : ${item.price}</span></p>
                                                         <span className='text-black' style={{ fontWeight: 'normal' }}>{item.discountPercentage}%off</span>
                                                         {/* <span className='stock'><AiOutlineStock/> {item.stock}</span> */}
                                                         <a href="" className='btn btn-primary'>Add to cart</a>

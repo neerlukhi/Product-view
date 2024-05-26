@@ -9,14 +9,17 @@ import { NavLink } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
-import { FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
-
+import { FaBars, FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
+import { showOffcanvas } from './slice/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [signIn, setSignIn] = useState(false);
 
+
+  const dispatch = useDispatch();
 
   // const searchHandler = (e) => {
   //   setSearch(e.target.value);
@@ -27,6 +30,9 @@ const Header = () => {
       {/* <h1>product view</h1> */}
       <Navbar expand="lg" className="w-100 bg-body-tertiary bg-dark py-3" data-bs-theme="dark">
         <Container>
+          <Button variant="white" onClick={() => dispatch(showOffcanvas())} className="d-lg-none my-3">
+            <FaBars/>
+          </Button>
           <Navbar.Brand > <h1>Shopping App</h1> </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-between'>
@@ -86,8 +92,8 @@ const Header = () => {
         ) : (
           <Modal.Body className='text-dark'>
             <h4 className='text-center position-relative'>
-             Login
-            <IoMdClose className='close' onClick={() => setModalShow(false)} />
+              Login
+              <IoMdClose className='close' onClick={() => setModalShow(false)} />
             </h4>
             <label>Email / Phone</label>
             <TextField id="outlined-basic" className='w-100 my-1' label="Email or Phone" variant="outlined" size='small' />
@@ -101,15 +107,15 @@ const Header = () => {
               <h6 className='text-center mb-4'>Also Login With</h6>
               <div className='d-flex justify-content-evenly'>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                <FaGoogle className='social rounded-circle'/>
+                  <FaGoogle className='social rounded-circle' />
                   <span>Google</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <FaFacebook className='social rounded-circle'/>
+                  <FaFacebook className='social rounded-circle' />
                   <span>Facebook</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <FaPhone className='social rounded-circle'/>
+                  <FaPhone className='social rounded-circle' />
                   <span>TrueCaller</span>
                 </div>
               </div>

@@ -110,6 +110,10 @@ img {
     .btn {
         margin-top: 20px;
     }
+
+    .card-main {
+        width: 100% !important;
+    }
 }
 
 .main svg {

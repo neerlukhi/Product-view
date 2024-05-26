@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 const initialState = {
     carts: [], // This should be an array to hold cart items
+    isVisible: false,
 }
 
 export const counterSlice = createSlice({
@@ -121,10 +122,17 @@ export const counterSlice = createSlice({
 
             }
         },
+
+        showOffcanvas: (state) => {
+            state.isVisible = true;
+        },
+        hideOffcanvas: (state) => {
+            state.isVisible = false;
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { Addtocart, Removeitem, inc, dec } = counterSlice.actions
+export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas } = counterSlice.actions
 
 export default counterSlice.reducer
