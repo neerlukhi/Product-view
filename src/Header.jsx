@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { FaBars, FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
 import { showOffcanvas } from './slice/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
 
@@ -20,6 +20,8 @@ const Header = () => {
 
 
   const dispatch = useDispatch();
+
+  const data = useSelector((state)=>state.cart.carts)
 
   // const searchHandler = (e) => {
   //   setSearch(e.target.value);
@@ -31,7 +33,7 @@ const Header = () => {
       <Navbar expand="lg" className="w-100 bg-body-tertiary bg-dark py-3" data-bs-theme="dark">
         <Container>
           <Button variant="white" onClick={() => dispatch(showOffcanvas())} className="d-lg-none my-3">
-            <FaBars/>
+            <FaBars />
           </Button>
           <Navbar.Brand > <h1>Shopping App</h1> </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -44,7 +46,15 @@ const Header = () => {
               className='search form-control border border-dark bg-dark text-white' />
 
             <Nav className="main mr-auto align-items-center">
-              <NavLink to={`/cart`} className='d-flex align-items-center'> <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> Cart </a></NavItem> </NavLink>
+              <NavLink to={`/cart`} className='d-flex align-items-center'>
+                <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> Cart </a>
+                </NavItem>
+                <span
+                  style={{ display: data.length > 0 ? "grid" : "none" }}
+                  className='cartCounter bg-danger text-white'>
+                  {data.length}
+                </span>
+              </NavLink>
               <NavItem className='ms-lg-4'><a className='btn btn-primary' onClick={() => setModalShow(true)}>Login in / SignIn</a></NavItem>
             </Nav>
           </Navbar.Collapse>
