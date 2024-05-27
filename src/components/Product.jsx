@@ -5,10 +5,9 @@ import '../product.css'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
-import { Addtocart } from '../slice/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
-import { hideOffcanvas } from '../slice/cartSlice';
+import { hideOffcanvas , Addtocart} from '../slice/cartSlice';
 
 const Product = () => {
 
@@ -100,7 +99,7 @@ const Product = () => {
                                                         <p className='mb-0' style={{ color: 'green', fontWeight: 'bold' }}>Price : ${item.price}</p>
                                                         <span className='text-black' style={{ fontWeight: 'normal' }}>{item.discountPercentage}%off</span>
                                                         {/* <span className='stock'><AiOutlineStock/> {item.stock}</span> */}
-                                                        <Button className='btn btn-primary' onClick={() => dispatch(Addtocart(data))}>Add to cart</Button>
+                                                        <Button className='btn btn-primary' onClick={() => dispatch(Addtocart(item))}>Add to cart</Button>
                                                     </div>
                                                 </CardBody>
                                             </Link>
