@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdDelete, MdFavorite } from "react-icons/md";
-import { FaMinus, FaPlus, FaStar } from "react-icons/fa";
-import { Removeitem , inc , dec } from '../slice/cartSlice';
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { Removeitem , inc , dec, addToWish } from '../slice/cartSlice';
 import '../product.css'
 
 const Cart = () => {
@@ -71,7 +71,9 @@ const Cart = () => {
                                                                     <MdDelete style={{ width: '20px', height: '20px' }} />
                                                                 </button>
                                                                 <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-sm mb-2 " data-mdb-tooltip-init
-                                                                    title="Move to the wish list">
+                                                                    title="Move to the wish list"
+                                                                    onClick={() => dispatch(addToWish(item))}
+                                                                >
                                                                     <MdFavorite style={{ width: '20px', height: '20px' }} />
                                                                 </button>
                                                             </div>
@@ -84,7 +86,6 @@ const Cart = () => {
                                                                 <button className='btn btn-primary px-3 me-2' onClick={() => dispatch(dec(index))}>
                                                                     <FaMinus />
                                                                 </button>
-
                                                                 {/* <div  className="form-outline">
                                                                     <input id="form1" min="0" name="quantity" value="1" type="number" className="form-control" />
                                                                 </div> */}

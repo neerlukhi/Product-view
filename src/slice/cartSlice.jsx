@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 const initialState = {
     carts: [], // This should be an array to hold cart items
+    wish: [],
+    wishTotalItems: [],
     isVisible: false,
 }
 
@@ -129,10 +131,44 @@ export const counterSlice = createSlice({
         hideOffcanvas: (state) => {
             state.isVisible = false;
         },
+        addToWish: (state, action) => {
+
+            console.log(action.payload)
+            let addwish = action.payload;
+            //  addwishlist ['qty'] = 1 // new add qty
+
+            // Check if item already exists in cart
+            let temp = state.wish.filter((item) => {
+                return item.id == action.payload.id //  item.id == action.payload.id 0 j thy 
+            })
+
+            if (temp.length == 0) {
+                state.wish.push(addwish); //dta push in carts array
+                state.wishTotalItems += 1 // new add qty
+
+                toast.success(`${addwish.title} Added Successfully`, {
+                    position: "bottom-left",
+                    // className: 'foo-bar',
+                    pauseOnHover: true,
+                    autoClose: 1800,
+                })
+            } else {
+                toast.error(`${addwish.title} Already In wishlist`, {
+                    position: "bottom-left",
+                    // className: 'foo-bar',
+                    autoClose: 1800,
+                    pauseOnHover: true,
+                })
+            }
+
+            // state.wish.push(action.payload);
+            // state.wishTotalItems += 1;
+            // toast.success("Item added to wishlist")
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas } = counterSlice.actions
+export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas , addToWish } = counterSlice.actions
 
 export default counterSlice.reducer

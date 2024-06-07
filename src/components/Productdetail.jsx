@@ -5,7 +5,8 @@ import { AiOutlineStock } from "react-icons/ai";
 import { useParams, NavLink } from "react-router-dom";
 import { FaShare } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { Addtocart } from "../slice/cartSlice";
+import { Addtocart , addToWish} from "../slice/cartSlice";
+import { propTypes } from "react-bootstrap/esm/Image";
 // import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -41,7 +42,12 @@ const Productdetail = () => {
         }
     }
 
+    // const addWishHandle = (product) => {
+    //     dispatch(addToWish(product));
+    // };
+
     console.log(data)
+
 
     if (data != null) {
         return (
@@ -84,7 +90,7 @@ const Productdetail = () => {
                                 alt={data?.title}
                             />
                             <div className='d-flex my-3 gap-3'>
-                                <button className="btn btn-success">
+                                <button onClick={() => dispatch(addToWish(data))} className="btn btn-success">
                                     <i className="fa-solid fa-heart"></i> ADD TO WISHLIST
                                 </button>
                                 <button className="btn btn-primary" onClick={() => dispatch(Addtocart(data))}>

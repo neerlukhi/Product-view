@@ -10,6 +10,7 @@ import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { FaBars, FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
+import { FaHeart } from "react-icons/fa";
 import { showOffcanvas } from './slice/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,14 +19,11 @@ const Header = () => {
   const [modalShow, setModalShow] = useState(false);
   const [signIn, setSignIn] = useState(false);
 
-
   const dispatch = useDispatch();
 
-  const data = useSelector((state)=>state.cart.carts)
+  const data = useSelector((state) => state.cart.carts)
 
-  // const searchHandler = (e) => {
-  //   setSearch(e.target.value);
-  // };
+  const wishTotalItems = useSelector((state) => state.cart.wishTotalItems);
 
   return (
     <>
@@ -46,8 +44,19 @@ const Header = () => {
               className='search form-control border border-dark bg-dark text-white' />
 
             <Nav className="main mr-auto align-items-center">
-              <NavLink to={`/cart`} className='d-flex align-items-center position-relative'>
-                <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> Cart </a>
+              <NavLink to={'/wishlist'} className="d-flex nav-link wishlist align-items-center position-relative me-3" >
+                <div className='d-flex align-items-center'>
+                  <span className='wishIcon'><FaHeart/></span>
+                </div>
+                <span 
+                  style={{ display: wishTotalItems.length > 0 ? "grid" : "none" }}
+                  className='wishCounter bg-danger text-white'
+                >
+                  {wishTotalItems.length}
+                </span>
+              </NavLink>
+              <NavLink to={`/cart`} className='d-flex cart align-items-center position-relative me-2'>
+                <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> </a>
                 </NavItem>
                 <span
                   style={{ display: data.length > 0 ? "grid" : "none" }}

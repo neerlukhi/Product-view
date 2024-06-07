@@ -7,6 +7,7 @@ import Productdetail from './components/Productdetail';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './components/Cart';
 import { ToastContainer } from 'react-toastify';
+import Wishlist from './components/Wishlist';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
         <Route path="/:title" element={<Product/>} />
         <Route path="/details/:id" element={<Productdetail/>} />
         <Route path="/cart" element={<Cart/>} />
-        {/* <Route path="/" element={} /> */}
+        <Route path="/wishlist" element={<Wishlist/>} />
       </Routes>
     </>
   );

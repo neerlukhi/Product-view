@@ -64,9 +64,22 @@ img {
     font-size: 10px;
     border-radius: 50%;
     top: -10%;
-    left: 92%;
+    left: 70%;
     z-index: 1000;
     place-items: center;
+}
+
+.wishCounter {
+    top: 10% !important;
+    left: 56% !important;
+}
+
+.wishIcon svg {
+    color: grey;
+}
+
+.wishIcon svg:hover {
+    color: lightcoral !important;
 }
 
 .navbar-brand h1 {
@@ -128,6 +141,11 @@ img {
     .card-main {
         width: 100% !important;
     }
+
+    .wishlist , .cart {
+        margin: 0 !important;
+    }
+
 }
 
 .main svg {
@@ -223,33 +241,6 @@ img {
     top: 50%;
     left: 50%;
 }
-
-/* .loader {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  border: 10px solid;
-  box-sizing: border-box;
-  animation: animloader 1s linear infinite alternate;
-}
-
-@keyframes animloader {
-  0% {
-    border-color: #0D6EFD rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-  }
-  33% {
-    border-color: #0D6EFD #0D6EFD rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-  }
-  66% {
-    border-color: #0D6EFD #0D6EFD #0D6EFD rgba(255, 255, 255, 0);
-  }
-  100% {
-    border-color: #0D6EFD #0D6EFD #fff #fff;
-  }
-}  */
-
 
 .loader {
     position: relative;
