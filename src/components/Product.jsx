@@ -130,11 +130,6 @@ const Product = () => {
                                 </>
                             ))
                         }
-                        {/* <nav aria-label="..." className='justify-content-center'>
-                        < Stack spacing={5} className='m-auto my-5' >
-                            <Pagination color='primary' size='large' />
-                        </Stack>
-                    </nav> */}
                     </div>
                 </div>
             </div>
