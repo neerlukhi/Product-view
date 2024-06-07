@@ -46,7 +46,7 @@ const Header = () => {
               className='search form-control border border-dark bg-dark text-white' />
 
             <Nav className="main mr-auto align-items-center">
-              <NavLink to={`/cart`} className='d-flex align-items-center'>
+              <NavLink to={`/cart`} className='d-flex align-items-center position-relative'>
                 <NavItem className='cart align-items-center'><a className='text-white'>  <BsCart2 /> Cart </a>
                 </NavItem>
                 <span
