@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { Addtocart, emptyWish } from '../slice/cartSlice';
+import { Addtocart, emptyWish , removeToWish} from '../slice/cartSlice';
 
 const Wishlist = () => {
 
@@ -54,7 +54,7 @@ const Wishlist = () => {
                                                 <td>${item?.price}</td>
                                                 <td>
                                                     <button className='btn btn-success mx-1' onClick={() => dispatch(Addtocart(item))}>Add To Cart</button>
-                                                    {/* <button className='btn btn-danger mx-1' onClick={() => dispatch(removeToWish(ind))}>Remove</button> */}
+                                                    <button className='btn btn-danger mx-1' onClick={() => dispatch(removeToWish(ind))}>Remove</button>
                                                 </td>
                                             </tr>
                                         ))}

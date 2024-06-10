@@ -16,19 +16,19 @@ export const counterSlice = createSlice({
             // action payload check
             console.log(action.payload);
 
-            let addcart = action.payload;
-            // addcart['qty'] = 1 // new add qty
+            let addcart = {...action.payload, qty : 1, total : action.payload.price}
+            // addcart['qty'] = 1 / new add qty / new add total
 
             // Check if item already exists in cart
             let temp = state.carts.filter((item) => {
                 return item.id == action.payload.id //  item.id == action.payload.id 0 j thy 
             })
-
             // console.log('datass',temp.length)
+
             if (temp.length == 0) {
-                state.carts.push(addcart); //dta push in carts array
-                addcart['qty'] = 1 // new add qty
-                addcart['total'] = addcart.price //// new add total
+                state.carts.push(addcart); // data push in carts array
+                // addcart['qty'] = 1 // new add qty
+                // addcart['total'] = addcart.price // new add total
 
                 toast.success(`${addcart.title} Added Successfully`, {
                     position: "bottom-left",
@@ -168,10 +168,21 @@ export const counterSlice = createSlice({
             state.wish = [];
             state.wishTotalItems = 0;
         },
+        removeToWish: (state, action) => {
+            const itemId = action.payload
+            const index = state.wish.findIndex((item, index) => index === itemId)
+
+            if (index >= 0) {
+
+                state.wishTotalItems--;
+                state.wish.splice(index, 1)
+
+            }
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas , addToWish , emptyWish } = counterSlice.actions
+export const { Addtocart, Removeitem, inc, dec, showOffcanvas, hideOffcanvas, addToWish, emptyWish, removeToWish } = counterSlice.actions
 
 export default counterSlice.reducer

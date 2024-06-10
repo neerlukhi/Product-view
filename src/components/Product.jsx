@@ -41,6 +41,7 @@ const Product = () => {
         dispatch(hideOffcanvas());// Close the offcanvas when a category is selected
     }
 
+
     console.log(cat)
 
     if (data != null) {

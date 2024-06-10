@@ -18,6 +18,7 @@ const Productdetail = () => {
     const [image, setImage] = useState(null);
 
     const dispatch = useDispatch()
+    
 
     useEffect(() => {
         console.log(id)
@@ -37,7 +38,7 @@ const Productdetail = () => {
                 text: data.description,
             });
         } else {
-            alert('Sharing is not supported in your browser.');
+            alert('Sharing is not supported in your browser..');
         }
     }
 
