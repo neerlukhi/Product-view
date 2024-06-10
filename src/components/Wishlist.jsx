@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { Addtocart } from '../slice/cartSlice';
+import { Addtocart, emptyWish } from '../slice/cartSlice';
 
 const Wishlist = () => {
 
@@ -11,8 +11,13 @@ const Wishlist = () => {
 
     const dispatch = useDispatch();
 
-    document.title = "WishList";
+    // document.title = "WishList";
 
+    const emptyWishHandle = () => {
+        if (window.confirm("Are You Sure To Empty Your WishList ?")) {
+            dispatch(emptyWish());
+        }
+    };
 
     return (
         <>
@@ -62,7 +67,7 @@ const Wishlist = () => {
                         <div className="container pt-2">
                             <div className='d-flex pt-1'>
                                 <div className='m-auto'>
-                                    {/* <button className='btn btn-danger mx-3' onClick={emptyWishHandle}>Empty WishList</button> */}
+                                    <button className='btn btn-danger mx-3' onClick={emptyWishHandle}>Empty WishList</button>
                                     <NavLink to="/cart" className='btn btn-success'>
                                         Go to Cart <i className="fa-solid fa-arrow-right"></i>
                                     </NavLink>

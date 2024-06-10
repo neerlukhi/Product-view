@@ -46,9 +46,9 @@ const Header = () => {
             <Nav className="main mr-auto align-items-center">
               <NavLink to={'/wishlist'} className="d-flex nav-link wishlist align-items-center position-relative me-3" >
                 <div className='d-flex align-items-center'>
-                  <span className='wishIcon'><FaHeart/></span>
+                  <span className='wishIcon'><FaHeart /></span>
                 </div>
-                <span 
+                <span
                   style={{ display: wishTotalItems.length > 0 ? "grid" : "none" }}
                   className='wishCounter bg-danger text-white'
                 >
@@ -79,7 +79,10 @@ const Header = () => {
       >
         {signIn ? (
           <Modal.Body className='text-dark'>
-            <h4 className='text-center'>Sign Up</h4>
+            <div className="position-relative">
+              <h4 className='text-center'>Sign Up </h4>
+              <IoMdClose className='close fs-4' onClick={() => setModalShow(false)} />
+            </div> 
             <label>Name</label>
             <TextField id="outlined-basic" className='w-100 my-1' label="Name" variant="outlined" size='small' />
             <label>Mobile Number</label>
@@ -93,15 +96,15 @@ const Header = () => {
               <h6 className='text-center mb-4'>Also Sign Up With</h6>
               <div className='d-flex justify-content-evenly'>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-brands fa-google"></i>
+                  <FaGoogle className='social rounded-circle' />
                   <span>Google</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-brands fa-facebook"></i>
+                  <FaFacebook className='social rounded-circle' />
                   <span>Facebook</span>
                 </div>
                 <div className="d-flex flex-column justify-content-evenly align-items-center">
-                  <i className="social rounded-circle fa-solid fa-phone"></i>
+                  <FaPhone className='social rounded-circle' />
                   <span>TrueCaller</span>
                 </div>
               </div>

@@ -133,7 +133,6 @@ export const counterSlice = createSlice({
         },
         addToWish: (state, action) => {
 
-            console.log(action.payload)
             let addwish = action.payload;
             //  addwishlist ['qty'] = 1 // new add qty
 
@@ -165,10 +164,14 @@ export const counterSlice = createSlice({
             // state.wishTotalItems += 1;
             // toast.success("Item added to wishlist")
         },
+        emptyWish: (state) => {
+            state.wish = [];
+            state.wishTotalItems = 0;
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas , addToWish } = counterSlice.actions
+export const { Addtocart, Removeitem, inc, dec , showOffcanvas , hideOffcanvas , addToWish , emptyWish } = counterSlice.actions
 
 export default counterSlice.reducer

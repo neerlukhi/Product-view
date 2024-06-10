@@ -93,7 +93,6 @@ const Cart = () => {
                                                                     {/* <label className="form-label" for="form1">{item.qty}</label> */}
                                                                     <span>{item.qty}</span>
                                                                 </div>
-
                                                                 <button className="btn btn-primary px-3 ms-2" onClick={() => dispatch(inc(index))}>
                                                                     <FaPlus />
                                                                 </button>

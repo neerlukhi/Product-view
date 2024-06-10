@@ -6,7 +6,6 @@ import { useParams, NavLink } from "react-router-dom";
 import { FaShare } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Addtocart , addToWish} from "../slice/cartSlice";
-import { propTypes } from "react-bootstrap/esm/Image";
 // import { ToastContainer, toast } from 'react-toastify';
 
 
