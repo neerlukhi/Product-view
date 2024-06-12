@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdDelete, MdFavorite } from "react-icons/md";
@@ -91,7 +91,8 @@ const Cart = () => {
                                                                 </div> */}
                                                                 <div data-mdb-input-init className="form-outline">
                                                                     {/* <label className="form-label" for="form1">{item.qty}</label> */}
-                                                                    <span>{item.qty}</span>
+                                                                    <input id="form1" min="0" name="quantity" value={item.qty} type="number" className="form-control" />
+                                                                    {/* <span>{item.qty}</span> */}
                                                                 </div>
                                                                 <button className="btn btn-primary px-3 ms-2" onClick={() => dispatch(inc(index))}>
                                                                     <FaPlus />

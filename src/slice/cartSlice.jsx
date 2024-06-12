@@ -16,7 +16,7 @@ export const counterSlice = createSlice({
             // action payload check
             console.log(action.payload);
 
-            let addcart = {...action.payload, qty : 1, total : action.payload.price}
+            let addcart = { ...action.payload, qty: 1, total: action.payload.price }
             // addcart['qty'] = 1 / new add qty / new add total
 
             // Check if item already exists in cart
@@ -81,14 +81,14 @@ export const counterSlice = createSlice({
             // Action to increment item quantity in cart
             temp[itemId].qty += 1 // temp[index] ni qty + 1
             console.log('itemId', itemId);
-            temp[itemId].total = temp[itemId].price * temp[itemId].qty
-
+            temp[itemId].total = temp[itemId].price * temp[itemId].qty;
+            
             // Calculate grand total //update that qty incres and value in total
             let alltotal = 0;
             state.carts.map((item) => {
                 alltotal += Number(item.total)
             })
-            state.grandTotal = alltotal
+            state.grandTotal = alltotal;
 
         },
 
