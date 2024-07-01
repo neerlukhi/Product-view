@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { FaBars, FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa6';
 import { FaHeart } from "react-icons/fa";
-import { showOffcanvas } from './slice/cartSlice';
+import { searchvalue, showOffcanvas } from './slice/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
@@ -22,6 +22,8 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.cart.carts)
+
+  const dishpatch = useDispatch()
 
   const wishTotalItems = useSelector((state) => state.cart.wishTotalItems);
 
@@ -41,6 +43,7 @@ const Header = () => {
               placeholder='Search'
               // value={search}
               // onChange={searchHandler}
+              onChange={(e) => dishpatch(searchvalue(e.target.value))}
               className='search form-control border border-dark bg-dark text-white' />
 
             <Nav className="main mr-auto align-items-center">

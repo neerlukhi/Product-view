@@ -7,7 +7,7 @@ import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasTitle } from 'react-bootstrap';
-import { hideOffcanvas , Addtocart} from '../slice/cartSlice';
+import { hideOffcanvas, Addtocart } from '../slice/cartSlice';
 
 const Product = () => {
 
@@ -18,6 +18,8 @@ const Product = () => {
     const [cat, setcat] = useState(null);
 
     const dispatch = useDispatch()
+
+    const display = useSelector((state) => state.cart.search)
 
     const OffcanvasVisible = useSelector((state) => state.cart.isVisible);
 
@@ -32,6 +34,15 @@ const Product = () => {
     }, []);
     console.log(data);
 
+    useEffect(() => {
+        if (display != '') {
+            fetch(`https://dummyjson.com/products/search?q=${display}`)
+                .then(res => res.json())
+                .then(data => setdata(data.products))
+                .then(console.log);
+        }
+    }, [display])
+
     function category(v) {
         var result = data.filter((val) => {
             return v == val.category;
@@ -41,8 +52,8 @@ const Product = () => {
         dispatch(hideOffcanvas());// Close the offcanvas when a category is selected
     }
 
-
     console.log(cat)
+
 
     if (data != null) {
         return (

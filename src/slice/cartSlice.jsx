@@ -6,6 +6,7 @@ const initialState = {
     wish: [],
     wishTotalItems: [],
     isVisible: false,
+    search : '',
 }
 
 export const counterSlice = createSlice({
@@ -179,10 +180,13 @@ export const counterSlice = createSlice({
 
             }
         },
+        searchvalue : (state, action) => {
+            state.search = action.payload;
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { Addtocart, Removeitem, inc, dec, showOffcanvas, hideOffcanvas, addToWish, emptyWish, removeToWish } = counterSlice.actions
+export const { Addtocart, Removeitem, inc, dec, showOffcanvas, hideOffcanvas, addToWish, emptyWish, removeToWish , searchvalue } = counterSlice.actions
 
 export default counterSlice.reducer
